@@ -18,16 +18,14 @@
   }
 }
 
-html {
-  min-height: 100vh;
+html, body {
+  min-height: 100dvh;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background-repeat: no-repeat;
-  object-fit: cover;
   background-image: linear-gradient(180deg, #C9FFDE 0%, #E5E5E5 100%);
-  overflow: hidden;
 
 }
 
