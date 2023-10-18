@@ -9,9 +9,33 @@ export default function Home() {
   return (
     <main className="home_gradient w-full h-screen">
       <div className="flex justify-between">
-        <h1 className="px-4 mt-36 mx-auto md:ml-20 lg:hero_green text-gradient-hero text-6xl relative md:after:content-['Haven'] after:content-[''] after:text-black after:lg:text-8xl after:text-6xl after:absolute after:top-14 font-semibold">
-          Green <span className="md:hidden text-black">Haven</span>
-        </h1>
+        <motion.h1
+          className="px-4 mt-36 mx-auto ml-20 hero_green relative opacity-0"
+          animate={{
+            opacity: 100,
+          }}
+          transition={{
+            delay: 0.2,
+            duration: 1,
+            easings: "easeout",
+          }}
+        >
+          Green
+          <motion.span
+            className="text-black text-8xl font-semibold absolute top-14"
+            animate={{
+              opacity: 100,
+              left: "100%",
+            }}
+            transition={{
+              delay: 0.2,
+              duration: 0.5,
+              easings: "easeout",
+            }}
+          >
+            Haven
+          </motion.span>
+        </motion.h1>
         <Image
           src="/Logo.png"
           alt="logo"

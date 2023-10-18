@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Cabin } from "next/font/google";
 import Navbar from "./components/Navbar";
-import Script from "next/script";
 
 const cabin = Cabin({ subsets: ["latin"], style: ["normal"] });
 
