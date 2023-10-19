@@ -1,10 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Cabin } from "next/font/google";
 import Navbar from "./components/Navbar";
 import AuthProvider from "./components/AuthProvider";
-
-const cabin = Cabin({ subsets: ["latin"], style: ["normal"] });
 
 export const metadata: Metadata = {
   title: "Green Haven",
@@ -18,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cabin.className}>
+      <body>
         <AuthProvider>
           <Navbar />
           {children}
