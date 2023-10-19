@@ -10,8 +10,8 @@ const Navbar = () => {
   const { data } = useSession();
 
   return (
-    <nav className="flex h-10 items-center justify-between p-8">
-      <ul className="flex gap-12 text-xl text-justify text-neutral-700 font-normal">
+    <nav className="flex h-10 items-center justify-between p-6">
+      <ul className="flex items-center gap-12 text-xl text-neutral-700 font-normal">
         <li>
           <Image src="/GH.png" width={45} height={45} alt="Logo" />
         </li>
@@ -23,7 +23,7 @@ const Navbar = () => {
           <SearchBar />
         </li>
       </ul>
-      <ul className="flex gap-12 text-xl text-justify text-neutral-700 font-normal">
+      <ul className="flex items-center gap-12 text-xl text-neutral-700 font-normal">
         <li className="hover:cursor-pointer hover:text-slate-400">
           <Link href="/contact">Contact</Link>
         </li>

@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="home_gradient w-full h-screen">
-      <div className="flex justify-between h-fit">
+      <div className="flex justify-between h-64">
         <motion.h1
           className="px-4 mt-36 font-semibold mx-auto ml-20 hero_green relative opacity-0"
           animate={{
@@ -41,7 +41,7 @@ export default function Home() {
           alt="logo"
           width={400}
           height={200}
-          className="mt-0 mr-16 hidden md:block lg:block md:w-80 xl:w-96"
+          className="mt-0 mr-16"
         />
       </div>
 
@@ -68,7 +68,7 @@ export default function Home() {
         </motion.span>
       </div>
 
-      <div className="absolute flex justify-between w-full bottom-0">
+      <div className="absolute flex justify-between h-60 w-full bottom-0">
         <Image
           src="/treebranch.png"
           alt="tree image"
