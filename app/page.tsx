@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="home_gradient w-full h-screen">
-      <div className="flex justify-between">
+      <div className="flex justify-between h-fit">
         <motion.h1
           className="px-4 mt-36 mx-auto ml-20 hero_green relative opacity-0"
           animate={{
@@ -25,7 +25,7 @@ export default function Home() {
             className="text-black text-8xl font-semibold absolute top-14"
             animate={{
               opacity: 100,
-              left: "100%",
+              left: "97%",
             }}
             transition={{
               delay: 0.2,

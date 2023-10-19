@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Cabin } from "next/font/google";
 import Navbar from "./components/Navbar";
+import AuthProvider from "./components/AuthProvider";
 
 const cabin = Cabin({ subsets: ["latin"], style: ["normal"] });
 
@@ -18,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cabin.className}>
-        <Navbar />
-        {children}
+        <AuthProvider>
+          <Navbar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
