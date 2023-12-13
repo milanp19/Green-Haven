@@ -4,7 +4,7 @@ import React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 
-const page = ({ params, query }) => {
+const DesignPage = ({ params, query }) => {
   const src = useSearchParams().get("src");
   const { data: session } = useSession();
   const router = useRouter();
@@ -35,4 +35,4 @@ const page = ({ params, query }) => {
   );
 };
 
-export default page;
+export default DesignPage;
