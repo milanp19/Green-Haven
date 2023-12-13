@@ -7,6 +7,7 @@
   --background-start-rgb: 250, 250, 250;
   --background-end-rgb: 255, 255, 255;
   --home-gradient: #c9ffde;
+  scroll-behavior: smooth;
 }
 
 @media (prefers-color-scheme: dark) {
