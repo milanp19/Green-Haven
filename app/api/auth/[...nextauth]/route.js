@@ -26,8 +26,13 @@ const authOptions = {
 
         if (user?.password === credentials.password) {
           try {
-            const data = await prisma.images.findMany();
-            console.log(data);
+            const data = await prisma.User.create({
+              data: {
+                name: user.name,
+                email: user.email,
+                role: user.role,
+              },
+            });
           } catch (err) {
             console.log(err);
           }
@@ -38,6 +43,9 @@ const authOptions = {
       },
     }),
     GoogleProvider({
+      profile(profile) {
+        return { role: profile.role ?? "user" };
+      },
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       authorization: {
@@ -49,6 +57,7 @@ const authOptions = {
       },
     }),
   ],
+
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     jwt({ token, user }) {
