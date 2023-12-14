@@ -53,7 +53,7 @@ const authOptions = {
         },
       },
       profile(profile) {
-        return { role: profile.role ?? "user", ...profile };
+        return { ...profile, role: profile.role ?? "user" };
       },
     }),
   ],
