@@ -4,6 +4,8 @@ import Image from "next/image";
 import { FaArrowDown } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import prisma from "./lib/prismaClient";
+import { useEffect } from "react";
 
 export default function Home() {
   return (
