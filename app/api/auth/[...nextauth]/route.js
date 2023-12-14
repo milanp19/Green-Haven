@@ -23,6 +23,12 @@ const authOptions = {
         const user = users.find((item) => item.name === credentials?.username);
 
         if (user?.password === credentials.password) {
+          try {
+            const data = await prisma.images.findMany();
+            console.log(data);
+          } catch (err) {
+            console.log(err);
+          }
           return user;
         } else {
           return null;
