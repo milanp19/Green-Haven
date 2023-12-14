@@ -43,9 +43,6 @@ const authOptions = {
       },
     }),
     GoogleProvider({
-      profile(profile) {
-        return { role: profile.role ?? "user" };
-      },
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       authorization: {
@@ -54,6 +51,9 @@ const authOptions = {
           access_type: "offline",
           response_type: "code",
         },
+      },
+      profile(profile) {
+        return { role: profile.role ?? "user" };
       },
     }),
   ],
