@@ -26,7 +26,7 @@ const authOptions = {
 
         if (user?.password === credentials.password) {
           try {
-            const data = await prisma.User.create({
+            const data = await prisma.user.create({
               data: {
                 name: user.name,
                 email: user.email,
@@ -45,6 +45,7 @@ const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      style: { bg: "#c9ffde", text: "black" },
       authorization: {
         params: {
           prompt: "consent",
@@ -77,6 +78,12 @@ const authOptions = {
   },
   session: {
     strategy: "jwt",
+  },
+  theme: {
+    colorScheme: "dark",
+    brandColor: "#c9ffde",
+    logo: "/GH.png",
+    buttonText: "#FFF",
   },
 };
 

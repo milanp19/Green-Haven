@@ -1,36 +1,32 @@
-"use client";
-import Image from "next/image";
-import React from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
+import prisma from "../../../lib/prismaClient";
+import HeroSection from "../../../components/HeroSection";
+import {} from "next/navigation";
 
-const DesignPage = ({ params, query }) => {
-  const src = useSearchParams().get("src");
-  const { data: session } = useSession();
-  const router = useRouter();
-
-  async function handleClick() {
-    if (!session) {
-      await signIn("callback" || "google", { redirect: "/design/1" });
-    }
-  }
+const DesignPage = ({ params, searchParams }) => {
+  const handleClick = async (session) => {
+    "use server";
+    if (session) {
+      const liked = await prisma.user.findFirst({
+        email: session.user.mail,
+      });
+      await prisma.user.update({
+        where: {
+          email: session.user.email,
+        },
+        data: {
+          likedImages: [...liked.likedImages, searchParams.src],
+        },
+      });
+    } else
+      await signIn("callback" || "google", {
+        redirect: searchParams.redirectURL,
+      });
+  };
 
   return (
     <div className="px-20 pt-6 ">
-      <div className="flex gap-5">
-        <div className="relative w-[800px] h-[500px]">
-          <Image src={src} fill />
-        </div>
-        <div>
-          <h3>Materials Used</h3>
-        </div>
-      </div>
-      <button
-        className="rounded-lg mt-2 bg-red-50 px-4 py-1"
-        onClick={handleClick}
-      >
-        like
-      </button>
+      <HeroSection handleClick={handleClick} searchParams={searchParams} />
     </div>
   );
 };
