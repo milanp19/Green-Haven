@@ -80,10 +80,8 @@ const authOptions = {
     strategy: "jwt",
   },
   theme: {
-    colorScheme: "dark",
-    brandColor: "#c9ffde",
+    colorScheme: "light",
     logo: "/GH.png",
-    buttonText: "#FFF",
   },
 };
 

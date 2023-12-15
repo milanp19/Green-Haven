@@ -1,29 +1,40 @@
-import { signIn } from "next-auth/react";
 import prisma from "../../../lib/prismaClient";
 import HeroSection from "../../../components/HeroSection";
-import {} from "next/navigation";
 
 const DesignPage = ({ params, searchParams }) => {
-  const handleClick = async (session) => {
+  const handleClick = async (session, liked) => {
     "use server";
+
     if (session) {
-      const liked = await prisma.user.findFirst({
+      const likedDesign = await prisma.user.findFirst({
         email: session.user.mail,
       });
-      await prisma.user.update({
-        where: {
-          email: session.user.email,
-        },
-        data: {
-          likedImages: [...liked.likedImages, searchParams.src],
-        },
-      });
-    } else
-      await signIn("callback" || "google", {
-        redirect: searchParams.redirectURL,
-      });
-  };
+      if (liked) {
+        await prisma.user.update({
+          where: {
+            email: session.user.email,
+          },
+          data: {
+            likedImages: [...likedDesign.likedImages, searchParams.src],
+          },
+        });
+      } else {
+        const updatedArray = likedDesign.likedImages.splice(
+          likedDesign.likedImages.indexOf(searchParams.src),
+          1
+        );
 
+        await prisma.user.update({
+          where: {
+            email: session.user.email,
+          },
+          data: {
+            likedImages: updatedArray,
+          },
+        });
+      }
+    }
+  };
   return (
     <div className="px-20 pt-6 ">
       <HeroSection handleClick={handleClick} searchParams={searchParams} />
