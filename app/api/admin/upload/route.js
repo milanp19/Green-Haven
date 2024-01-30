@@ -1,7 +1,5 @@
-import multer from "multer";
 import { NextResponse } from "next/server";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { buffer } from "node:stream/consumers";
 import prisma from "../../../lib/prismaClient.js";
 import s3 from "../../../lib/s3client.js";
 
