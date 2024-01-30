@@ -20,7 +20,11 @@ const HeroSection = ({ searchParams, handleClick }) => {
     <>
       <div className="flex gap-14">
         <div className="relative w-[800px] h-[500px]">
-          <Image src={src} fill />
+          <Image
+            src={src}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </div>
         <div className="ml-4 flex flex-col items-end">
           <h3 className="text-xl">Materials Used</h3>

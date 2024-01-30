@@ -1,26 +1,22 @@
 "use client";
 import { useSession } from "next-auth/react";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 const AdminPage = () => {
   const fileref = useRef();
   const { data: session } = useSession();
-  if (session?.user?.role !== "admin") {
-    return <div>You are not authorized to access this page</div>;
-  }
+  const [file, setFile] = useState(null);
+  // if (session?.user?.role !== "admin") {
+  //   return <div>You are not authorized to access this page</div>;
+  // }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const files = fileref.current.files;
-    const reader = new FileReader();
-    const blob = new Blob(files);
-    console.log(blob);
-    Array(files).map(async (file) => {
-      await reader.readAsDataURL(blob);
-      const data = new Promise((resolve, reject) => {
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = (err) => reject(err);
-      });
+    const formData = new FormData();
+    formData.append("image", file);
+    await fetch("/api/admin/upload", {
+      method: "POST",
+      body: formData,
     });
   };
 
@@ -30,9 +26,8 @@ const AdminPage = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="file"
-          accept="image/png, image/jpeg"
-          multiple
-          ref={fileref}
+          accept="image/*"
+          onChange={(e) => setFile(e.target.files[0])}
         />
         <br />
         <button type="submit">Submit</button>
