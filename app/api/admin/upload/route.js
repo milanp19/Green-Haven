@@ -5,15 +5,6 @@ import { buffer } from "node:stream/consumers";
 import prisma from "../../../lib/prismaClient.js";
 import s3 from "../../../lib/s3client.js";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-// const storage = multer.memoryStorage();
-// const upload = multer({ storage: storage });
-
 export async function POST(request) {
   const formData = await request.formData();
   const image = formData.get("image");
